@@ -1,0 +1,457 @@
+<LoginPage>:
+    name : "LoginPage"
+    email : email
+    password : passwd
+
+    FloatLayout:
+
+        Label:
+            text : 'FACE RECOGNITION LOGIN SYSTEM'
+            underline : True
+            pos_hint : {'left' : 0.1, 'y' : 0.8}
+            size_hint : (1, 0.1)
+            font_size : '70sp'
+    
+        Label:
+            text : 'Email'
+            font_size : '30sp'
+            pos_hint : {'x' : 0.15, 'y' : 0.6}
+            bold : True
+            size_hint : (0.2, 0.1)
+
+        TextInput:
+            id : email
+            pos_hint : {'x' : 0.4, 'y' : 0.6}
+            size_hint : (0.4, 0.1)
+            font_size : '20sp'
+            multiline : False
+            password : False
+
+        Label:
+            pos_hint : {'x' : 0.1, 'y' : 0.45}
+            size_hint : (0.3, 0.1)
+            text : 'Password'
+            bold : True
+            font_size : '30sp'
+
+        TextInput:
+            id : passwd
+            pos_hint : {'x' : 0.4, 'y' : 0.45}
+            size_hint : (0.4, 0.1)
+            font_size : '20sp'
+            multiline : False
+            password : True
+
+        Button:
+            pos_hint : {'x' : 0.35, 'y' : 0.3}
+            size_hint : (0.3, 0.1)
+            font_size : '20sp'
+            text : 'Not a user? Sign Up'
+            on_release: 
+                app.root.current = 'RegistrationPage'
+                root.manager.transition.direction = 'down'
+
+        Button:
+            pos_hint : {'x' : 0.25, 'y' : 0.05}
+            size_hint : (0.5, 0.2)
+            font_size : '30sp'
+            text : 'Login'
+            on_release :
+                root.login()
+                root.manager.transition.direction = 'left'
+
+        Label:
+            pos_hint : {'x' : 0.9, 'y' : 0.00}
+            size_hint : (0.1, 0.1)
+            font_size : '15sp'
+            text : '- Hrishikesh Salway\n Roll number : C55'
+
+<RegistrationPage>:
+    name : "RegistrationPage"
+    first : First
+    last : Last
+    email : email
+    department : department
+    student : student
+    teacher : teacher
+    college : college
+    dob : dob
+    password : passwd
+    confirm : Confirm
+
+    GridLayout:
+        cols : 2
+
+        Label:
+            text : 'First Name'
+            font_size : '30sp'
+
+        TextInput:
+            id : First
+            multiline : False
+            password : False
+            font_size : '20sp'
+
+        Label:
+            text : 'Last Name'
+            font_size : '30sp'
+            
+        TextInput:
+            id : Last
+            multiline : False
+            password : False
+            font_size : '20sp'
+
+        Label:
+            text : 'Email'
+            font_size : '30sp'
+
+        TextInput:
+            id : email
+            multiline : False
+            password : False
+            font_size : '20sp'
+        
+        
+        Label:
+            text : 'College'
+            font_size : '30sp'
+
+        TextInput:
+            id : college 
+            multiline : False
+            password : False
+            font_size : '20sp'
+
+        Label:
+            text : 'Profession'
+            font_size : '30sp'
+
+        FloatLayout:
+            Label:
+                text : 'Student '
+                size_hint : (0.1, 0.1)
+                pos_hint : {'x' : 0.4, 'y' : 0.5}
+                font_size : '20sp'
+
+            CheckBox:
+                id : student
+                size_hint : (0.1, 0.1)
+                pos_hint : {'x' : 0.5, 'y' : 0.5}
+                active : False
+                on_press : root.stuStat()
+
+            Label:
+                text : 'Teacher '
+                size_hint : (0.1, 0.1)
+                pos_hint : {'x' : 0.1, 'y' : 0.5}
+                font_size : '20sp'
+            
+            CheckBox:
+                id : teacher
+                size_hint : (0.1, 0.1)
+                pos_hint : {'x' : 0.2, 'y' : 0.5}
+                active : True
+                on_press : root.teaStat()
+
+        Label:
+            text : 'Department'
+            font_size : '30sp'
+
+        TextInput:
+            id : department
+            text : 'Year :   Branch : '
+            multiline : False
+            password : False
+            font_size : '20sp'
+
+        Label:
+            text : 'Date of Birth'
+            font_size : '30sp'
+
+        TextInput:
+            id : dob
+            text : 'DD/MM/YYYY'
+            font_size : '20sp'
+            multiline : False
+            password : False
+
+        Label:
+            text : 'Password'
+            font_size : '30sp'
+
+        TextInput:
+            id : passwd
+            multiline : False
+            password : True
+            font_size : '20sp'
+
+        Label:
+            text : 'Confirm Password'
+            font_size : '30sp'
+
+        TextInput:
+            id : Confirm
+            multiline : False
+            password : True
+            font_size : '20sp'
+
+        Button:
+            text : 'Alreay a user? Sign in'
+            on_release : 
+                app.root.current = 'LoginPage'
+                root.manager.transition.direction = 'up'
+
+        Button:
+            text : 'Next'
+            on_release : 
+                root.register_btn()
+                root.manager.transition.direction = 'left'
+
+
+<face_authentication>:
+    name : 'face_authentication'
+    n : n
+    cam : camera
+
+    FloatLayout:
+
+        Label:
+            id : n
+            text : 'Please verify your face'
+            pos_hint : {'x' : 0.27, 'y' : 0.9}
+            size_hint : (0.5, 0.1)
+            font_size : '30sp'
+
+        CameraCv:
+            id : camera
+            resolution : 1280, 720
+            play : False
+            pos_hint : {'x' : 0, 'y' : 0.2}
+            size_hint : (1, 0.7)
+
+        Button:
+            text : 'Verify'
+            pos_hint : {'x' : 0.55, 'y' : 0}
+            size_hint : (0.3, 0.1)
+            on_release : root.proceed()
+
+        Button:
+            text : 'Sign out'
+            pos_hint : {'x' : 0.2, 'y' : 0}
+            size_hint : (0.25, 0.1)
+            on_release : 
+                app.root.current = 'LoginPage'
+                root.manager.transition.direction = 'right'
+
+<face_registration>:
+    name : 'face_registration'
+    cam : camera2
+    n1 : n1
+    n2 : n2    
+    cam_button : cam_button
+
+    FloatLayout:
+
+        Label:
+            id : n1
+            text : 'Welcome'
+            pos_hint : {'x' : 0.25, 'y' : 0.9}
+            size_hint : (0.5, 0.1)
+            font_size : '35sp'
+
+        Label:
+            id : n2
+            text : 'Properly look at the camera and place your head properly to get the best result'
+            pos_hint : {'x' : 0.2, 'y' : 0.8}
+            size_hint : (0.5, 0.1)
+            font_size : '30sp'
+
+        CameraCv:
+            id : camera2
+            resolution : 1280, 720
+            play : False
+            pos_Hint : {'x' : 0, 'y' : 0.4}
+            size_hint : (0.8, 0.8)
+
+        Button:
+            id : cam_button
+            background_normal : 'Logos\\camera_logo.png'
+            background_down : 'Logos\\camera_logo.png'
+            background_disabled_normal : 'Logos\\camera_disabled4.png'
+            pos_hint : {'x' : 0.68, 'y' : 0.3}
+            size_hint : (0.1, 0.2)
+            font_size : '20sp'
+            on_release : 
+                root.registerFace()
+
+        Button:
+            text : 'Register'
+            pos_hint : {'x' : 0.78, 'y' : 0.5}
+            size_hint : (0.15, 0.1)
+            font_size : '20sp'
+            on_release : 
+                root.register()
+                app.root.transition.direction = 'up'  # left
+
+        Button:
+            text : 'Cancel'
+            pos_hint : {'x' : 0.78, 'y' : 0.2}
+            size_hint : (0.15, 0.1)
+            font_size : '20sp'
+            on_release : 
+                root.cancel()
+                app.root.transition.direction = 'up'  # left
+
+<Granted>:
+    full_name : full_name
+    emailid : emailid
+    department : department
+    college : college
+    profession : profession
+    dob :  dob
+    date : date
+    img : img
+
+    FloatLayout:
+        Image:
+            id : img
+            pos_hint : {'x' : 0.55, 'y' : 0.55}
+            size_hint : (0.4, 0.4)
+
+        GridLayout:
+            cols : 2
+
+            pos_hint : {'x' : 0.00, 'y' : 0.05}
+            size_hint : (0.5, 0.9)
+
+            Label:
+                text : 'Name : '
+                font_size : '35sp'
+                bold : True
+            
+            Label:
+                id : full_name
+                text : ''
+                font_size : '30sp'
+
+            Label:
+                text : 'Email : '
+                bold : True
+                font_size : '35sp'
+
+            Label:
+                id : emailid
+                text : ''
+                font_size : '30sp'
+
+            Label:
+                text : 'Department : '
+                bold : True
+                font_size : '35sp'
+            
+            Label:
+                id : department
+                font_size : '30sp'
+                text : ''
+
+            Label:
+                text : 'Profession :'
+                bold : True 
+                font_size : '35sp'
+
+            Label:
+                id : profession
+                font_size : '30sp'
+                text : ''
+
+            Label:
+                text : 'College : '
+                bold : True
+                font_size : '35sp'
+
+            Label
+                id : college
+                text : ''
+                font_size : '30sp'
+
+            Label:
+                text : 'Date of Birth : '
+                bold : True
+                font_size : '35sp'
+
+            Label:
+                id : dob
+                text : ''
+                font_size : '30sp'
+
+            Label:
+                text : 'Joined on : '
+                bold : True
+                font_size : '35sp'
+
+            Label:
+                id : date
+                font_size : '30sp'
+                text : ''
+
+        Button:
+            text : 'Log Out'
+            pos_hint : {'x' : 0.6, 'y' : 0.3}
+            size_hint : (0.3, 0.1)
+            font_size : '25sp'
+            on_release:
+                root.logout()
+                root.manager.transition.direction = 'right'
+
+        Button:
+            text : 'Delete Account'
+            pos_hint : {'x' : 0.6, 'y' : 0.1}
+            size_hint : (0.3, 0.1)
+            font_size : '25sp'
+            on_release:
+                root.delete()
+                root.manager.transition.direction = 'right'
+
+<del_account>:
+
+    size : (400, 400)
+
+    FloatLayout:
+
+        Label : 
+            text : 'Delete this acccount?'
+            pos_hint : {'x' : 0.24, 'y' : 0.6}
+            font_size : '25sp'
+            size_hint : (0.5, 0.1)
+
+        Button:
+            text : 'Yes'
+            pos_hint : {'x' : 0.18, 'y' : 0.1}
+            font_size : '20sp'
+            size_hint : (0.25, 0.15)
+            on_release : 
+                root.yes()
+                app.root.transition.direction = 'right'
+
+        Button :
+            text : 'No'
+            pos_hint : {'x' : 0.56, 'y' : 0.1}
+            font_size : '20sp'
+            size_hint : (0.25, 0.15)
+            on_release : root.dismiss()
+
+<Popup>:
+    size : (400, 400)
+        
+<CameraCv>:
+    keep_ratio: True
+    allow_stretch: True
+
+    canvas.before:
+        PushMatrix
+        Rotate:
+            axis: 0, 0, 1
+            origin: root.center
+    canvas.after:
+        PopMatrix 
